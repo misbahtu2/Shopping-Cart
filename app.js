@@ -9,6 +9,7 @@ var adminRouter = require('./routes/admin');
 
 const { engine } = require('express-handlebars')
 var app = express();
+var fileUpaload = require('express-fileupload')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -17,6 +18,7 @@ app.set('view engine', 'hbs');
                 // ↓ here error come ? i chage engine instaead of hbs 
 app.engine('hbs',engine({extname:'hbs',defaultLayout:'layout',layoutsDir:__dirname+'/views/layout/',partialsDir:__dirname+'/views/partials/'}))
 
+app.use(fileUpaload());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
